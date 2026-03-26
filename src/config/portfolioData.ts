@@ -15,7 +15,7 @@ export const PORTFOLIO_INFO: Portfolio = {
     // avatar can be a string, an object with { url, label }, or an array of those.
     avatar: [
       // use public root path so Vite serves the static asset from /public/profile.jpg
-      { url: "./arjun.jpeg", label: "" },
+      { url: "./arjun.png", label: "" },
     ],
     summary:
       "I am passionate about building modern web applications using ReactJS, Node.js, Firebase, and MongoDB, with styling using Tailwind CSS. I also have a strong foundation in Data Structures and Algorithms using C++. Currently pursuing my M.Tech at NIT Jalandhar, I am eager to apply my skills and contribute to real-world projects.",
@@ -158,19 +158,20 @@ export const PORTFOLIO_INFO: Portfolio = {
       ],
     },
   ],
-  projects: [
+  projects : [
+   
     {
-      id: "news-wave",
-      title: "News Wave",
+      id: "shop-easy",
+      title: "Shop Easy (E-commerce)",
       description:
-        "A React-based news web application that fetches real-time news using NewsAPI. It provides users with up-to-date articles and a clean, responsive interface for browsing news.",
-      tags: ["React", "JavaScript", "API", "Frontend"],
-      image: "https://source.unsplash.com/800x600/?news",
-      href: "https://github.com/ArjunMalikOfficial/news-wave",
+        "A modern e-commerce web application built using React and Firebase featuring authentication, cart management, and order handling.",
+      tags: ["React", "Firebase", "E-commerce", "Full Stack"],
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+      href: "https://github.com/ArjunMalikOfficial/shop-easy",
       links: [
         {
           label: "GitHub",
-          url: "https://github.com/ArjunMalikOfficial/news-wave",
+          url: "https://github.com/ArjunMalikOfficial/shop-easy",
           icon: "SiGithub",
         },
       ],
@@ -181,7 +182,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       description:
         "A lightweight URL shortener that converts long links into short, shareable URLs. Built for simplicity and efficiency with a clean user interface.",
       tags: ["JavaScript", "Web App", "Frontend"],
-      image: "https://source.unsplash.com/800x600/?technology",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
       href: "https://github.com/ArjunMalikOfficial/link-bite",
       links: [
         {
@@ -197,7 +198,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       description:
         "A text utility tool that provides features like word count, character count, case conversion, and reading time estimation.",
       tags: ["React", "JavaScript", "Utility"],
-      image: "https://source.unsplash.com/800x600/?text",
+      image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
       href: "https://github.com/ArjunMalikOfficial/text-alter",
       links: [
         {
@@ -207,23 +208,24 @@ export const PORTFOLIO_INFO: Portfolio = {
         },
       ],
     },
-    {
-      id: "shop-easy",
-      title: "Shop Easy (E-commerce)",
+     {
+      id: "news-wave",
+      title: "News Wave",
       description:
-        "A modern e-commerce web application built using React and Firebase featuring authentication, cart management, and order handling.",
-      tags: ["React", "Firebase", "E-commerce", "Full Stack"],
-      image: "https://source.unsplash.com/800x600/?ecommerce",
-      href: "https://github.com/ArjunMalikOfficial/shop-easy",
+        "A React-based news web application that fetches real-time news using NewsAPI. It provides users with up-to-date articles and a clean, responsive interface for browsing news.",
+      tags: ["React", "JavaScript", "API", "Frontend"],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80",
+      href: "https://github.com/ArjunMalikOfficial/news-wave",
       links: [
         {
           label: "GitHub",
-          url: "https://github.com/ArjunMalikOfficial/shop-easy",
+          url: "https://github.com/ArjunMalikOfficial/news-wave",
           icon: "SiGithub",
         },
       ],
     },
   ],
+
 };
 
 // ---------- SMALL HELPERS ----------

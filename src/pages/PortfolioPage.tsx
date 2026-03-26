@@ -23,132 +23,161 @@ const PortfolioPage: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <ScrollProgressBar />
-      <Header
-        links={[
-          { href: "#about", label: "Home" },
-          { href: "#projects", label: "Projects" },
-          { href: "#skills", label: "Skills" },
-          { href: "#contact", label: "Contact" },
-        ]}
-      />
+      {/* ✅ Prevent horizontal scroll */}
+      <div className="overflow-x-hidden">
 
-      {/* About / hero: hidden while hello animation plays */}
-      <AnimatePresence>
-        {showHello && (
-          <motion.div
-            key="hello-overlay"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <AppleHelloEnglishEffect
-              className="text-white"
-              onAnimationComplete={() => setShowHello(false)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <ScrollProgressBar />
 
-      <motion.section
-        id="about"
-        className="relative w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-0"
-        style={{ height: "100vh" }}
-        initial={{ opacity: 0, y: 8 }}
-        animate={showHello ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="absolute inset-0 z-0" style={{ height: "140vh" }}>
-          <BackgroundBeams />
-        </div>
-        <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto py-20 sm:py-24 lg:py-32">
-          <div className="grid items-center">
-            <About />
-          </div>
-        </div>
-      </motion.section>
-      <div className="w-full bg-[var(--background)] pt-8 pb-8 relative z-20">
-        <CurvedLoop
-          marqueeText={PORTFOLIO_INFO.personal.headline + " · "}
-          speed={2}
-          className="text-2xl text-[var(--text)] bg-[var(--surface)]"
-          curveAmount={400}
-          direction="left"
-          interactive={true}
+        <Header
+          links={[
+            { href: "#about", label: "Home" },
+            { href: "#projects", label: "Projects" },
+            { href: "#skills", label: "Skills" },
+            { href: "#contact", label: "Contact" },
+          ]}
         />
-      </div>
 
-      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
-        <section id="projects" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">Projects</h2>
-          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Selected work — click a card for details.
-          </p>
-          <ProjectsGrid
-            projects={PORTFOLIO_INFO.projects}
-            onOpen={setSelected}
-          />
-        </section>
+        {/* Hello Animation */}
+        <AnimatePresence>
+          {showHello && (
+            <motion.div
+              key="hello-overlay"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <AppleHelloEnglishEffect
+                className="text-white"
+                onAnimationComplete={() => setShowHello(false)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        <section id="skills" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">Skills</h2>
-          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Tools and technologies I use regularly.
-          </p>
-          <SkillsList skills={PORTFOLIO_INFO.skills} isBar={true} />
-        </section>
+        {/* HERO SECTION */}
+        <motion.section
+          id="about"
+          className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
+          initial={{ opacity: 0, y: 8 }}
+          animate={showHello ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          {/* Background */}
+          <div className="absolute inset-0 z-0 h-full">
+            <BackgroundBeams />
+          </div>
 
-        <section id="contact" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">Contact</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Tell me about your project, or just say hi.
-          </p>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]">
-              <ContactForm />
+          {/* Content */}
+          <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto py-16 sm:py-20 lg:py-28">
+            <div className="grid grid-cols-1">
+              <About />
             </div>
+          </div>
+        </motion.section>
 
-            <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-4">
-              <div>
-                <div className="font-semibold">Let's collaborate</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
-                  I'm available for freelance and contract work. My inbox is
-                  open.
-                </div>
+        {/* Curved Text */}
+        <div className="w-full bg-[var(--background)] py-8 relative z-20">
+          <CurvedLoop
+            marqueeText={PORTFOLIO_INFO.personal.headline + " · "}
+            speed={2}
+            className="text-xl sm:text-2xl text-[var(--text)] bg-[var(--surface)]"
+            curveAmount={400}
+            direction="left"
+            interactive={true}
+          />
+        </div>
+
+        {/* MAIN CONTENT */}
+        <main className="max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 relative z-20">
+
+          {/* PROJECTS */}
+          <section id="projects" className="py-10 sm:py-12">
+            <h2 className="text-2xl font-semibold text-[var(--brand)]">
+              Projects
+            </h2>
+            <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
+              Selected work — click a card for details.
+            </p>
+            <ProjectsGrid
+              projects={PORTFOLIO_INFO.projects}
+              onOpen={setSelected}
+            />
+          </section>
+
+          {/* SKILLS */}
+          <section id="skills" className="py-10 sm:py-12">
+            <h2 className="text-2xl font-semibold text-[var(--brand)]">
+              Skills
+            </h2>
+            <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
+              Tools and technologies I use regularly.
+            </p>
+            <SkillsList skills={PORTFOLIO_INFO.skills} isBar={true} />
+          </section>
+
+          {/* CONTACT */}
+          <section id="contact" className="py-10 sm:py-12">
+            <h2 className="text-2xl font-semibold text-[var(--brand)]">
+              Contact
+            </h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              Tell me about your project, or just say hi.
+            </p>
+
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              {/* FORM */}
+              <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]">
+                <ContactForm />
               </div>
-              <div className="mt-2">
-                <div className="font-semibold">Quick contact</div>
-                <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  Email: arjunmalik1821@gmail.com
+
+              {/* INFO */}
+              <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-4">
+                <div>
+                  <div className="font-semibold">Let's collaborate</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                    I'm available for freelance and contract work. My inbox is open.
+                  </div>
                 </div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
-                  Location: Remote
+
+                <div className="mt-2">
+                  <div className="font-semibold">Quick contact</div>
+                  <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                    Email: arjunmalik1821@gmail.com
+                  </div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                    Location: Remote
+                  </div>
                 </div>
-              </div>
-              <div className="mt-auto">
-                <div className="text-sm font-medium">Resume</div>
-                <a
+
+                <div className="mt-auto">
+                  <div className="text-sm font-medium">Resume</div>
+                  <a
                     href={`${import.meta.env.BASE_URL}arjun_malik.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
+                    className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 text-center"
                   >
                     Download PDF
                   </a>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <ScrollToTop />
-      <Footer />
 
-      <ProjectModal
-        project={selected}
-        open={!!selected}
-        onClose={() => setSelected(null)}
-      />
+            </div>
+          </section>
+        </main>
+
+        <ScrollToTop />
+        <Footer />
+
+        <ProjectModal
+          project={selected}
+          open={!!selected}
+          onClose={() => setSelected(null)}
+        />
+
+      </div>
     </ThemeProvider>
   );
 };

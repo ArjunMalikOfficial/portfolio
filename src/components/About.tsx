@@ -326,9 +326,9 @@ export const About: React.FC = () => {
           </motion.div>
 
           {/* Right: Coverflow carousel */}
-          <motion.div
+          <motion.div 
             variants={item}
-            className="md:col-span-5 flex items-center justify-center overflow-visible"
+            className="md:col-span-5 flex items-center justify-center overflow-visible mt-8 sm:mt-0"
           >
             <div
               className="relative w-full h-100 flex items-center justify-center"
@@ -364,7 +364,7 @@ export const About: React.FC = () => {
                       }}
                       onClick={() => setActiveIndex(index)}
                     >
-                      <div className="w-72 h-96 rounded-xl overflow-hidden shadow-2xl bg-muted ring-2 ring-border/20">
+                      <div className="w-96 rounded-xl overflow-hidden shadow-2xl bg-muted ring-2 ring-border/20">
                         {item.image && !item.image.includes("/placeholder") ? (
                           <img
                             src={item.image}
