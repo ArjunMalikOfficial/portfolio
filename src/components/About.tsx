@@ -313,7 +313,7 @@ export const About: React.FC = () => {
                   </a>
 
                   <a
-                    href={`${import.meta.env.BASE_URL}arjun_malik.pdf`}
+                    href={`${import.meta.env.BASE_URL}Arjun_resume.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted"

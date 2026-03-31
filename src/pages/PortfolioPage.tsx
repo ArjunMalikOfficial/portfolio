@@ -154,7 +154,7 @@ const PortfolioPage: React.FC = () => {
                 <div className="mt-auto">
                   <div className="text-sm font-medium">Resume</div>
                   <a
-                    href={`${import.meta.env.BASE_URL}arjun_malik.pdf`}
+                    href={`${import.meta.env.BASE_URL}Arjun_resume.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 text-center"
