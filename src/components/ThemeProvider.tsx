@@ -6,32 +6,30 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [dark, setDark] = useState<boolean>(() => {
     try {
-      if (typeof window === "undefined") return false;
+      if (typeof window === "undefined") return true;
+
       const saved = localStorage.getItem("theme");
-      if (saved) return saved === "dark";
-      return (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      );
+
+      // First visit = dark mode
+      if (!saved) return true;
+
+      // Returning visitor = use saved preference
+      return saved === "dark";
     } catch (err) {
-      // handle the exception (log) instead of swallowing it silently
-      // SonarQube will be satisfied because we don't ignore the exception.
-      // Logging is lightweight and useful for debugging in dev.
-      // In production you might route to a telemetry sink instead.
       // eslint-disable-next-line no-console
       console.warn("Failed to read persisted theme:", err);
-      return false;
+      return true;
     }
   });
 
-  // stable toggle identity
-  const toggle = useCallback(() => setDark((d) => !d), []);
+  const toggle = useCallback(() => {
+    setDark((d) => !d);
+  }, []);
 
   useEffect(() => {
     try {
       localStorage.setItem("theme", dark ? "dark" : "light");
     } catch (err) {
-      // log errors when persisting theme
       // eslint-disable-next-line no-console
       console.warn("Failed to persist theme:", err);
     }
@@ -41,11 +39,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [dark]);
 
-  // memoize provider value so it doesn't change every render
   const value = useMemo(() => ({ dark, toggle }), [dark, toggle]);
 
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
 
